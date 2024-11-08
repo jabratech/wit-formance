@@ -1,0 +1,59 @@
+interface types {
+    //use jabratech:common/types.{pair, currency, option-kind, side, option-type, payout-ccy, instrument-kind, counterparty, user};
+
+    /** 
+     * Record representing an error result
+     * - error-code: an error code for validation
+     * - error-msg: description of error
+     */
+    record error {
+      error-code: s16,
+      error-msg: string
+    }
+
+    //========================================
+    record get-balance-request {
+      data: list<get-balance-request-data>
+    }
+
+    record get-balance-response {
+      data: list<get-balance-response-data>
+    }
+
+    record get-balance-request-data {
+      counterparty: string,
+      sub-ledger: string
+    }
+
+    record get-balance-response-data {
+      counterparty: string,
+      sub-ledger: string,
+      balances: list<balances>
+    }
+
+    record balances {
+      currency: string,
+      amount: f64
+    }
+    
+    //========================================
+    record formance-transaction-request {
+      postings: list<transaction-posting>,
+      sub-ledger: string,
+      meta-data: string,
+      reference: option<string>,
+      allow-negative: bool
+    }
+
+    record transaction-posting {
+      src-counterparty: string,
+      dst-counterparty: string,
+      amount: f64,
+      currency: string,
+    }
+
+    record formance-transaction-response {
+      code: s16,
+      msg: string
+    }
+}

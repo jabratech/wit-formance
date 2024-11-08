@@ -1,0 +1,7 @@
+interface formance-handler {    
+    use types.{get-balance-request, get-balance-response, error};
+    get-balance: func(request: get-balance-request) -> result<get-balance-response, error>;
+
+    use types.{formance-transaction-request, formance-transaction-response};
+    formance-transaction: func(request: formance-transaction-request) -> result<formance-transaction-response, error>;
+  }
